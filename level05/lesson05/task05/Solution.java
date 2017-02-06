@@ -1,0 +1,74 @@
+package com.javarush.test.level05.lesson05.task05;
+
+/* Провести три боя  попарно между котами
+Создать три кота используя класс Cat.
+Провести три боя попарно между котами.
+Класс Cat создавать не надо. Для боя использовать метод boolean fight(Cat anotherCat).
+Результат каждого боя вывести на экран.
+*/
+
+public class Solution {
+    public static void main(String[] args) {
+        Cat catVaska = new Cat("Vaska",4,6,10);
+        Cat catBarsik = new Cat("Barsik", 2,3,5);
+        Cat catGlen = new Cat ("Glen", 6, 10,20);
+
+
+       // boolean VaskaWinner = catVaska.fight(catBarsik);
+        //boolean BarsikWinner = catBarsik.fight(catGlen);
+        //boolean GlenWinner = catGlen.fight(catVaska);
+        String Winner1;
+        String Winner2;
+        String Winner3;
+
+        if (catVaska.fight(catBarsik))
+            Winner1 = "Vaska";
+        else
+            Winner1 = "Barsik";
+        System.out.println("Бой "+Cat.fightCount+". Победитель - "+Winner1);
+
+        if (catBarsik.fight(catGlen))
+            Winner2 = "Barsik";
+        else
+            Winner2 = "Glen";
+        System.out.println("Бой "+Cat.fightCount+". Победитель - "+Winner2);
+
+        if (catGlen.fight(catVaska))
+            Winner3 = "Glen";
+        else
+            Winner3 = "Vaska";
+        System.out.println("Бой "+Cat.fightCount+". Победитель - "+Winner3);
+        //напишите тут ваш код
+    }
+
+    public static class Cat {
+
+        public static int count = 0;
+        public static int fightCount = 0;
+
+        protected String name;
+        protected int age;
+        protected int weight;
+        protected int strength;
+
+        public Cat(String name, int age, int weight, int strength) {
+            count++;
+
+            this.name = name;
+            this.age = age;
+            this.weight = weight;
+            this.strength = strength;
+        }
+
+        public boolean fight(Cat anotherCat) {
+            fightCount++;
+
+            int agePlus = this.age > anotherCat.age ? 1 : 0;
+            int weightPlus = this.weight > anotherCat.weight ? 1 : 0;
+            int strengthPlus = this.strength > anotherCat.strength ? 1 : 0;
+
+            int score = agePlus + weightPlus + strengthPlus;
+            return score > 2; // return score > 2 ? true : false;
+        }
+    }
+}
